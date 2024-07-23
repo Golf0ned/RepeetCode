@@ -1,6 +1,10 @@
 # RepeetCode
 
-A tool (and API) to review completed LeetCode problems. Because I wanted to be able to pull random LeetCode Problems for practice.
+A tool (and API) to review completed LeetCode problems. Because I wanted to be able to pull random LeetCode Problems for practice, and maybe have a reminder of how to do them.
+
+If someone wants to make a front-end for this, by all means go for it. This was more of a 3 hour frustration project.
+
+Has only been tested on Python 3.10. Should work on later versions. Shouldn't work on prior versions (RE: `match`).
 
 ## Installation
 
@@ -13,19 +17,22 @@ To install:
    cd RepeetCode
    ```
 
-2. Install requirements (with or without your virutal environment of choice):
+2. Make sure you have at least Python 3.10 installed.
 
-   ```bash
-   [create and activate virtual environment]
-   pip install -r requirements.txt
-   ```
+3. Happy leetcoding!
 
 ## Usage
 
-To use, activate the virtual environment (if using one) and run `src/runner.py` (exact command may vary):
+To use, run `src/runner.py` with your python installation (name may vary):
 
 ```bash
-[command to activate virtual environment] && python src/runner.py
+python src/runner.py
 ```
 
-Quit by nuking the terminal, or entering q.
+3 options at runtime:
+
+* `q`: Quits the program.
+* `a`: Add a problem to your list, with a reminder/hint for yourself.
+* `r`: Random problem from your list, ask for hint if necessary.
+
+Data is saved in `data.csv`.
