@@ -7,21 +7,17 @@ filename = "data.csv"
 
 
 def run():
-    data = []
-    with open(filename, newline='') as csv_file:
-        reader = csv.reader(csv_file)
-        for row in reader:
-            data.append(row)
+    data = repeetcode.load_data(filename)
 
     user_input = ''
     while user_input != 'q':
-        print('Input an option:')
+        print('\nInput an option:')
         user_input = input('[q]uit | [a]dd problem | [r]andom problem\n').lower()
         os.system('cls' if os.name=='nt' else 'clear')
         match user_input:
             case 'q': print('bye bye!')
-            case 'a': repeetcode.add_problem()
-            case 'r': repeetcode.random_problem()
+            case 'a': repeetcode.add_problem(data)
+            case 'r': repeetcode.random_problem(data)
             case _: print('Invalid input')
 
 
