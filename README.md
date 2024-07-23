@@ -1,4 +1,4 @@
-# RepeetCode
+# RepeetCode 🔁
 
 A tool (and API) to review completed LeetCode problems. Because I wanted to be able to pull random LeetCode problems for practice, and maybe have a reminder of how to do them.
 
