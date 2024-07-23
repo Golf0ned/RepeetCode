@@ -14,7 +14,7 @@ def run():
             case 'q': print('bye bye!')
             case 'a': repeetcode.add_problem()
             case 'r': repeetcode.random_problem()
-            case _: print('Invalid input')
+            case _: print('Invalid input (expect q/a/r)')
 
 
 if __name__ == '__main__':

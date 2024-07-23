@@ -52,6 +52,10 @@ class RepeetCode:
 
 
     def random_problem(self):
+        if self.data == []:
+            print('No problems added!')
+            return
+
         difficulties = ['Easy', 'Medium', 'Hard']
 
         problem_number, problem_hint = random.choice(self.data)
@@ -68,6 +72,6 @@ class RepeetCode:
             match need_hint:
                 case 'y': print(f'Reminder: {problem_hint}')
                 case 'n': return
-                case _: print('Invalid input')
+                case _: print('Invalid input (expect y/n)')
 
         return
