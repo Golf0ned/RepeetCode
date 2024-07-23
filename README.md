@@ -1,6 +1,6 @@
 # RepeetCode
 
-A tool (and API) to review completed LeetCode problems. Because I wanted to be able to pull random LeetCode Problems for practice, and maybe have a reminder of how to do them.
+A tool (and API) to review completed LeetCode problems. Because I wanted to be able to pull random LeetCode problems for practice, and maybe have a reminder of how to do them.
 
 If someone wants to make a front-end for this, by all means go for it. This was more of a 3 hour frustration project.
 
