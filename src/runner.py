@@ -1,7 +1,7 @@
 import csv
 import os
 
-from src import repeetcode
+import repeetcode
 
 filename = "data.csv"
 
