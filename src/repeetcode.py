@@ -1,4 +1,5 @@
 import csv
+import random
 import json
 import os
 from urllib.request import urlopen, Request
@@ -27,8 +28,8 @@ class RepeetCode:
         leetcode_json_string = urlopen(Request(leetcode_api, headers=headers)).read().decode('utf-8')
         for problem in json.loads(leetcode_json_string)['stat_status_pairs']:
             self.problems[problem['stat']['frontend_question_id']] = {'name':       problem['stat']['question__title'],
-                                                                           'url_slug':   problem['stat']['question__title_slug'],
-                                                                           'difficulty': problem['difficulty']['level']}
+                                                                      'url_slug':   problem['stat']['question__title_slug'],
+                                                                      'difficulty': problem['difficulty']['level']}
 
     def add_problem(self):
         problem_number = input('Enter problem number: ')
@@ -52,5 +53,22 @@ class RepeetCode:
 
 
     def random_problem(self):
-        print('random_problem')
+        difficulties = ['Easy', 'Medium', 'Hard']
+
+        problem_number, problem_hint = random.choice(self.data)
+        problem_name = self.problems[problem_number]['name']
+        problem_url_slug = self.problems[problem_number]['url_slug']
+        problem_difficulty = difficulties[self.problems[problem_number]['difficulty'] - 1]
+
+        problem_url = f'https://leetcode.com/problems/{problem_url_slug}/'
+        print(f'The problem is:\n\n{problem_number}. {problem_name}\nDifficulty: {problem_difficulty}\n{problem_url}\n')
+
+        need_hint = ''
+        while need_hint != 'y' and need_hint != 'n':
+            need_hint = input('Need reminder? (y/n)')
+            match need_hint:
+                case 'y': print(f'Reminder: {problem_hint}')
+                case 'n': return
+                case _: print('Invalid input')
+
         return
