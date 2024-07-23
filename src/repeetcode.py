@@ -1,16 +1,56 @@
 import csv
+import json
+import os
+from urllib.request import urlopen, Request
 
-def load_data(filename):
-    data = []
-    # a+ to generate file if not existing
-    with open(filename, 'a+', newline='') as csv_file:
-        reader = csv.reader(csv_file)
-        for row in reader:
-            data.append(row)
-    return data
 
-def add_problem(data):
-    print('add_problem')
+# shhhhhhhh
+headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.3'}
+leetcode_api = 'https://leetcode.com/api/problems/algorithms/'
 
-def random_problem(data):
-    print('random_problem')
+file_name = 'data.csv'
+
+class RepeetCode:
+
+    def __init__(self):
+        self.data = []
+        if not os.path.exists(file_name): # make if it doesnt exist
+            with open(file_name, 'w'): pass
+        else:
+            with open(file_name, 'r', newline='') as csv_file:
+                reader = csv.reader(csv_file)
+                for row in reader:
+                    print(row)
+                    self.data.append([int(row[0]), row[1]])
+
+        self.problems = {}
+        leetcode_json_string = urlopen(Request(leetcode_api, headers=headers)).read().decode('utf-8')
+        for problem in json.loads(leetcode_json_string)['stat_status_pairs']:
+            self.problems[problem['stat']['frontend_question_id']] = {'name':       problem['stat']['question__title'],
+                                                                           'url_slug':   problem['stat']['question__title_slug'],
+                                                                           'difficulty': problem['difficulty']['level']}
+
+    def add_problem(self):
+        problem_number = input('Enter problem number: ')
+        if not problem_number.isdigit() or int(problem_number) not in self.problems:
+            print('Invalid problem number!')
+            return
+        
+        problem_number_int = int(problem_number)
+        
+        if problem_number_int in [item[0] for item in self.data]:
+            print('Problem already added!')
+            return
+
+        problem_hint = input('Enter your hint/reminder for the problem: ')
+
+        self.data.append((problem_number_int, problem_hint))
+        with open(file_name, 'a', newline='') as csv_file:
+            writer = csv.writer(csv_file)
+            writer.writerow([problem_number, problem_hint])
+        return
+
+
+    def random_problem(self):
+        print('random_problem')
+        return
