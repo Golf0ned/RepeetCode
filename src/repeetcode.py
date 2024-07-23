@@ -21,7 +21,6 @@ class RepeetCode:
             with open(file_name, 'r', newline='') as csv_file:
                 reader = csv.reader(csv_file)
                 for row in reader:
-                    print(row)
                     self.data.append([int(row[0]), row[1]])
 
         self.problems = {}
@@ -32,7 +31,7 @@ class RepeetCode:
                                                                       'difficulty': problem['difficulty']['level']}
 
     def add_problem(self):
-        problem_number = input('Enter problem number: ')
+        problem_number = input('Enter problem number:\n> ')
         if not problem_number.isdigit() or int(problem_number) not in self.problems:
             print('Invalid problem number!')
             return
@@ -43,7 +42,7 @@ class RepeetCode:
             print('Problem already added!')
             return
 
-        problem_hint = input('Enter your hint/reminder for the problem: ')
+        problem_hint = input('Enter your hint/reminder for the problem:\n> ')
 
         self.data.append((problem_number_int, problem_hint))
         with open(file_name, 'a', newline='') as csv_file:
@@ -65,7 +64,7 @@ class RepeetCode:
 
         need_hint = ''
         while need_hint != 'y' and need_hint != 'n':
-            need_hint = input('Need reminder? (y/n)')
+            need_hint = input('Need reminder? (y/n)\n> ').lower()
             match need_hint:
                 case 'y': print(f'Reminder: {problem_hint}')
                 case 'n': return

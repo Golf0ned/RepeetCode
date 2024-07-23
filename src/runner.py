@@ -1,4 +1,4 @@
-# import os
+import os
 
 import repeetcode as rc
 
@@ -8,8 +8,8 @@ def run():
     user_input = ''
     while user_input != 'q':
         print('\nInput an option:')
-        user_input = input('[q]uit | [a]dd problem | [r]andom problem\n').lower()
-        # os.system('cls' if os.name=='nt' else 'clear')
+        user_input = input('[q]uit | [a]dd problem | [r]andom problem\n> ').lower()
+        os.system('cls' if os.name=='nt' else 'clear')
         match user_input:
             case 'q': print('bye bye!')
             case 'a': repeetcode.add_problem()
